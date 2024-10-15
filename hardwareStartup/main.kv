@@ -1,0 +1,50 @@
+<MainScreen>:
+    #: import time __main__.time
+
+    motor_button: motor_button
+    update_direction: update_direction
+    slider_value_label: slider_value_label
+
+    name: 'main'
+    FloatLayout:
+        size_hint: None, None
+
+    DPEAButton:
+        id: motor_button
+        text: 'Stepper motor disabled'
+        size: 200, 100
+        x: root.width * 0.6
+        y: root.height * 0.5
+        color: 1, 0, 0, 1
+        on_press: root.turn_on_and_off()
+
+    DPEAButton:
+        id: update_direction
+        text: 'Update motor direction here!'
+        size: 250, 100
+        x: root.width * 0.15
+        y: root.height * 0.5
+        color: 0, 0, 0, 1
+        on_press: root.update_motor_direction()
+
+    Label:
+        id: slider_value_label
+        text: 'Motor speed: 200'
+        y: root.height * -0.4
+        color: 0, 0, 0, 1
+
+    Slider:
+        min: 100
+        max: 300
+        value: 200
+        y: root.height * -0.1
+        size_hint: (1, 0.6)
+        on_value: root.update_motor_speed(self, self.value)
+
+    DPEAButton:
+        id: event
+        size: 50, 50
+        x: root.width * 0
+        y: root.height * 0.95
+        color: 1, 1, 1, 1
+        on_press: root.special_event()
